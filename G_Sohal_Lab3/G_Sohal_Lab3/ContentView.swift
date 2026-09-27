@@ -18,110 +18,136 @@ struct ContentView: View {
     @State private var card8: String = "card8"
     @State private var card9: String = "card9"
     @State private var card10: String = "card10"
-    @State private var resultMessage: String = "";
-    @State private var cards: [Int] = [];
-    
-    
+    @State private var resultMessage: String = ""
+    @State private var cards: [Int] = []
+
     var body: some View {
         VStack {
-            HStack{
+            HStack {
                 Image(card1)
                     .resizable()
                 Image(card2)
                     .resizable()
             }
-            HStack{
+            HStack {
                 Image(card3)
                     .resizable()
                 Image(card4)
                     .resizable()
             }
-            HStack{
+            HStack {
                 Image(card5)
                     .resizable()
                 Image(card6)
                     .resizable()
             }
-            HStack{
+            HStack {
                 Image(card7)
                     .resizable()
                 Image(card8)
                     .resizable()
             }
-            HStack{
+            HStack {
                 Image(card9)
                     .resizable()
                 Image(card10)
                     .resizable()
             }
-            Button(action: {
-                //
-                // Swift Code-generate random number between 1 and 13
-                //
-                var randomNumber:Int = 0
-                for i in 1...10 {
-                    if i == 1 {
-                        randomNumber = Int.random(in: 1...10)
-                        card1 = "card" + String(randomNumber)
+            Button(
+                action: {
+                    //
+                    // Swift Code-generate random number between 1 and 13
+                    //
+                    var randomNumber: Int = 0
+                    for i in 1...10 {
+                        if i == 1 {
+                            randomNumber = Int.random(in: 1...13)
+                            card1 = "card" + String(randomNumber)
+                        } else if i == 2 {
+                            randomNumber = Int.random(in: 1...13)
+                            card2 = "card" + String(randomNumber)
+                        } else if i == 3 {
+                            randomNumber = Int.random(in: 1...13)
+                            card3 = "card" + String(randomNumber)
+                        } else if i == 4 {
+                            randomNumber = Int.random(in: 1...13)
+                            card4 = "card" + String(randomNumber)
+                        } else if i == 5 {
+                            randomNumber = Int.random(in: 1...13)
+                            card5 = "card" + String(randomNumber)
+                        } else if i == 6 {
+                            randomNumber = Int.random(in: 1...13)
+                            card6 = "card" + String(randomNumber)
+                        } else if i == 7 {
+                            randomNumber = Int.random(in: 1...13)
+                            card7 = "card" + String(randomNumber)
+                        } else if i == 8 {
+                            randomNumber = Int.random(in: 1...13)
+                            card8 = "card" + String(randomNumber)
+                        } else if i == 9 {
+                            randomNumber = Int.random(in: 1...13)
+                            card9 = "card" + String(randomNumber)
+                        } else if i == 10 {
+                            randomNumber = Int.random(in: 1...13)
+                            card10 = "card" + String(randomNumber)
+                        } else if i == 11 {
+                            randomNumber = Int.random(in: 1...13)
+                            card10 = "card" + String(randomNumber)
+                        } else if i == 12 {
+                            randomNumber = Int.random(in: 1...13)
+                            card10 = "card" + String(randomNumber)
+                        } else if i == 13 {
+                            randomNumber = Int.random(in: 1...13)
+                            card10 = "card" + String(randomNumber)
+                        }
+
+                        cards.append(randomNumber)  // appends random number to the array of cards
+
+                    }  // end for loop
+
+                    let high = cards.max()  // highest card value
+                    let low = cards.min()  // lowest card value
+                    let sum = cards.reduce(0, +)
+                    let average = Double(sum) / Double(cards.count)
+                    let range = high! - low!
+                    let highestPos = cards.firstIndex(of: high!)
+                    let lowestPos = cards.firstIndex(of: low!)
+
+                    var dict: [Int: Int] = [:]  // creates an empty dictionary
+
+                    for i in cards {  // makes a dictionary of the number each card has appeared
+                        dict[i] = (dict[i] ?? 0) + 1
                     }
-                    else if i == 2 {
-                        randomNumber = Int.random(in: 1...10)
-                        card2 = "card" + String(randomNumber)
+
+                    let highestValue = dict.values.max()
+                    var mostFrequent = 0
+
+                    for key in dict.keys.sorted(by: <) {  // loops through an ordered array of keys to find the most frequent card.
+                        if highestValue == dict[key] {
+                            mostFrequent = key
+                        }
                     }
-                    else if i == 3 {
-                        randomNumber = Int.random(in: 1...10)
-                        card3 = "card" + String(randomNumber)
-                    }
-                    else if i == 4 {
-                        randomNumber = Int.random(in: 1...10)
-                        card4 = "card" + String(randomNumber)
-                    }
-                    else if i == 5 {
-                        randomNumber = Int.random(in: 1...10)
-                        card5 = "card" + String(randomNumber)
-                    }
-                    else if i == 6 {
-                        randomNumber = Int.random(in: 1...10)
-                        card6 = "card" + String(randomNumber)
-                    }
-                    else if i == 7 {
-                        randomNumber = Int.random(in: 1...10)
-                        card7 = "card" + String(randomNumber)
-                    }
-                    else if i == 8 {
-                        randomNumber = Int.random(in: 1...10)
-                        card8 = "card" + String(randomNumber)
-                    }
-                    else if i == 9 {
-                        randomNumber = Int.random(in: 1...10)
-                        card9 = "card" + String(randomNumber)
-                    }
-                    else if i == 10 {
-                        randomNumber = Int.random(in: 1...10)
-                        card10 = "card" + String(randomNumber)
-                    }
-                    
-                    cards.append(randomNumber);
-                    
-                    
-                   
-                } // end for loop
-                
-                var high = cards.max()
-                var low = cards.min()
-                resultMessage = "High: \(high!) " + "\n" +
-                  "Low : \(low!) " + "\n" +
-                  "Freq :"
-                cards = []
-                
-            }, label: {
-                Text("RANDOM")
-                    .padding()
-                    .foregroundColor(Color.green)
-                    .font(.largeTitle)
-            }) // end button
+
+                    resultMessage =
+
+                        "High \(high!) \t" + " Low: \(low!)" + "\n"
+                        + "Sum  \(sum) \t" + " Freq  : \(mostFrequent)" + "\n"
+                        + "Pos.# High: \(highestPos! + 1) \t"
+                        + "Pos.# Low: \(lowestPos! + 1)" + "\n"
+                        + "Average:  \(average)\t" + " Range: \(range)"
+
+                    cards = []
+
+                },
+                label: {
+                    Text("RANDOM")
+                        .padding()
+                        .foregroundColor(Color.green)
+                        .font(.largeTitle)
+                }
+            )  // end button
             Text(resultMessage)
-                .frame(width: 275, height: 70, alignment: .leading)
+                .frame(width: 275, height: 100, alignment: .leading)  //increased height to 100 to fit the result message
                 .background(Color.green)
                 .foregroundColor(Color.black)
         }
