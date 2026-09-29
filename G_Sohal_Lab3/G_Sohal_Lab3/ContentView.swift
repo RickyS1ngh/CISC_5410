@@ -90,15 +90,6 @@ struct ContentView: View {
                         } else if i == 10 {
                             randomNumber = Int.random(in: 1...13)
                             card10 = "card" + String(randomNumber)
-                        } else if i == 11 {
-                            randomNumber = Int.random(in: 1...13)
-                            card10 = "card" + String(randomNumber)
-                        } else if i == 12 {
-                            randomNumber = Int.random(in: 1...13)
-                            card10 = "card" + String(randomNumber)
-                        } else if i == 13 {
-                            randomNumber = Int.random(in: 1...13)
-                            card10 = "card" + String(randomNumber)
                         }
 
                         cards.append(randomNumber)  // appends random number to the array of cards
