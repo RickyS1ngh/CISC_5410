@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     let textColor = Color(
-        red: 0 / 255,
-        green: 0 / 255,
-        blue: 128 / 255
+        red: 239 / 255,
+        green: 191 / 255,
+        blue: 4 / 255
     )
     var body: some View {
         NavigationView {
